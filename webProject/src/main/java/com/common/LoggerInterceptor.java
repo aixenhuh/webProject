@@ -1,4 +1,4 @@
-package com.project.common;
+package com.common;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

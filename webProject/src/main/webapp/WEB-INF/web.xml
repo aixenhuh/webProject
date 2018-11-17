@@ -17,13 +17,21 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/spring/root-context.xml</param-value>
   </context-param>
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:config/spring/context-*.xml</param-value>
+  </context-param>
+  
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -37,6 +45,7 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>action</servlet-name>
     <servlet-class>
