@@ -32,26 +32,47 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "index";
+	@RequestMapping(value = "/introduce", method = RequestMethod.GET)
+	public ModelAndView introduce(Locale locale, Model model) {
+		ModelAndView mv = new ModelAndView("introduce");
+        
+        List<Map<String, Object>> list = null;
+		try {
+			list = sampleService.selectBoardList("a");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        mv.addObject("list", list);
+         
+        return mv;
 	}
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/introduce", method = RequestMethod.GET)
-	public ModelAndView introduce(Locale locale, Model model) {
-		ModelAndView mv = new ModelAndView("introduce");
+	@RequestMapping(value = "/signIn", method = RequestMethod.GET)
+	public ModelAndView signIn(Locale locale, Model model) {
+		ModelAndView mv = new ModelAndView("/register/signIn");
+        
+        List<Map<String, Object>> list = null;
+		try {
+			list = sampleService.selectBoardList("a");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        mv.addObject("list", list);
+         
+        return mv;
+	}
+	
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/signInForm.do", method = RequestMethod.GET)
+	public ModelAndView signInForm(Locale locale, Model model) {
+		ModelAndView mv = new ModelAndView("/ajax/signIn_ajax");
         
         List<Map<String, Object>> list = null;
 		try {

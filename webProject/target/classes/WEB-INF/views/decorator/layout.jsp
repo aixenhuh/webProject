@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="/FinalSpring/resources/js/jquery-1.11.2.js"></script>
 <decorator:head />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -13,11 +12,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="stylesheet" href="/views/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 </head>
 <body>
-<script src="/views/js/jquery-3.3.1.min.js"></script>
-<script src="/views/js/bootstrap.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="/index.jsp">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -50,8 +50,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">Default</a></li>
-            <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
-            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            <li class="active"><a href="/loginForm.do">Sign in<span class="sr-only">(current)</span></a></li>
+            <li><a onclick="signUpBtn()" href="#">Sign up</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -60,12 +60,20 @@
     <div class="container">
 		<decorator:body />
     </div>    
+    
+    <script>
+
+	function signUpBtn(){
+		alert("123");
+	}
+	
+	</script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/views/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/views/js/holder.js"></script>
+    <script src="/js/holder.js"></script>
 </body>
 </html>
