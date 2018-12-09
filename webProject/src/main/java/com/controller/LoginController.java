@@ -103,6 +103,12 @@ public class LoginController {
          ...  
            
          */
+		try {
+			List<Map<String, Object>> list = sampleService.selectBoardList("a");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
  
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
