@@ -1,10 +1,9 @@
 package com.common.dao;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
- 
-import com.common.dao.AbstractDAO;
  
 @Repository("sampleDAO")
 public class SampleDAO extends AbstractDAO{
@@ -13,4 +12,14 @@ public class SampleDAO extends AbstractDAO{
     public List<Map<String, Object>> selectBoardList(String string) throws Exception{
         return (List<Map<String, Object>>)selectList("select_Sql.selectBoardList", string);
     }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Map<String, Object>> loginCheckList(HashMap hashmap) throws Exception{
+        return (List<Map<String, Object>>)selectList("select_Sql.loginCheckList", hashmap);
+    }
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Object signUpDao(HashMap hashmap) {
+		return insert("select_Sql.signUpDao", hashmap);
+	}
 }

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
@@ -9,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,26 +23,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.service.SampleService;
+import com.service.LoginService;
 
 @Controller
 public class LoginController {
     private static String RSA_WEB_KEY = "_RSA_WEB_Key_"; // 개인키 session key
     private static String RSA_INSTANCE = "RSA"; // rsa transformation
 	
-	@Resource(name="sampleService")
-	private SampleService sampleService;
+	@Resource(name="loginService")
+	private LoginService loginService;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) {
 		// RSA 키 생성
@@ -48,6 +45,71 @@ public class LoginController {
  
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/register/signIn");
+        return mav;
+	}
+	
+	@RequestMapping(value = "/loginController", method = RequestMethod.POST)
+	public ModelAndView loginController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String userEmail = (String) request.getParameter("userEmail");
+		String userPassword = (String) request.getParameter("userPassword");
+		HashMap<String, String> hashmap = new HashMap<String, String>();
+		
+		HttpSession session = request.getSession();
+	    
+		PrivateKey privateKey = (PrivateKey) session.getAttribute(LoginController.RSA_WEB_KEY);
+
+		// 복호화
+        userEmail    = decryptRsa(privateKey, userEmail);
+        userPassword = decryptRsa(privateKey, userPassword);
+	 
+        // 개인키 삭제
+        session.removeAttribute(LoginController.RSA_WEB_KEY);
+        
+        hashmap.put("userEmail", userEmail);
+        hashmap.put("userPassword", userPassword);
+ 
+        // 로그인 처리
+        List<Map<String, Object>> list = null;
+		try {
+			list = loginService.loginCheck(hashmap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        ModelAndView mv = new ModelAndView();
+        
+		if(list.size()>0) {
+			session.setAttribute("userEmail",list.get(0).get("ID"));
+			session.setAttribute("userName", list.get(0).get("NAME"));
+			session.setAttribute("userAge", list.get(0).get("AGE"));
+	        mv.setViewName("index");
+		} else {
+			mv.setViewName("error");
+		}
+        return mv;
+	}
+	
+	@RequestMapping(value = "/signUp.do", method = RequestMethod.GET)
+	public ModelAndView signUpForm(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/register/signUp");
+        return mav;
+	}
+	
+	@RequestMapping(value = "/signInsert.do", method = RequestMethod.GET)
+	public ModelAndView signInsert(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        
+        HashMap<String, String> hashmap = new HashMap<String, String>();
+        hashmap.put("email", request.getParameter("email").toString());
+        hashmap.put("password", request.getParameter("password").toString());
+        hashmap.put("fullname", request.getParameter("fullname").toString());
+        hashmap.put("age", request.getParameter("age").toString());
+        hashmap.put("gender", request.getParameter("gender").toString());
+        
+		loginService.signUpForm(hashmap);
+        mav.setViewName("/index");
         return mav;
 	}
 	
@@ -76,44 +138,6 @@ public class LoginController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-	}
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/loginController", method = RequestMethod.POST)
-	public ModelAndView loginController(HttpServletRequest request, HttpServletResponse response) {
-		String userEmail = (String) request.getParameter("userEmail");
-		String userPassword = (String) request.getParameter("userPassword");
-		
-		HttpSession session = request.getSession();
-	    
-		PrivateKey privateKey = (PrivateKey) session.getAttribute(LoginController.RSA_WEB_KEY);
-
-		// 복호화
-        userEmail    = decryptRsa(privateKey, userEmail);
-        userPassword = decryptRsa(privateKey, userPassword);
-	 
-        // 개인키 삭제
-        session.removeAttribute(LoginController.RSA_WEB_KEY);
- 
-        // 로그인 처리
-        /*
-          
-         ...  
-           
-         */
-		try {
-			List<Map<String, Object>> list = sampleService.selectBoardList("a");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- 
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("index");
-         
-        return mv;
 	}
 
 	private String decryptRsa(PrivateKey privateKey, String securedValue) {

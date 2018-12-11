@@ -16,4 +16,24 @@
             ORDER BY IDX DESC
         ]]>
     </select>
+    <select id="loginCheckList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+            SELECT
+            	ID,
+                NAME,
+                AGE,
+                EMAIL
+            FROM
+                TB_MEMBER
+            WHERE
+                ID = #{userEmail}
+            AND PASSWORD = #{userPassword}
+        ]]>
+    </select>
+    <insert id="signUpDao" parameterType="hashmap">
+        <![CDATA[
+            INSERT INTO TB_MEMBER(SEQ, ID, PASSWORD, NAME, AGE, EMAIL, SEX)
+            VALUES (TB_MEMBER_SEQ.NEXTVAL, #{email}, #{password}, #{fullname}, TO_NUMBER(#{age}), #{email}, #{gender})
+        ]]>
+    </insert>
 </mapper>

@@ -49,8 +49,8 @@
         <input type="password" id="current_password" name="current_password" class="form-control" placeholder="Password" required>
         <input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
         <input type="hidden" id="RSAExponent" value="${RSAExponent}"/>   
-        <input type="text" id="userEmail" name="userEmail">
-        <input type="text" id="userPassword" name="userPassword">
+        <input type="hidden" id="userEmail" name="userEmail">
+        <input type="hidden" id="userPassword" name="userPassword">
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me

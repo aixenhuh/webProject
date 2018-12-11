@@ -3,6 +3,7 @@
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/layout/header.jsp"%>
 <html>
 <head>
 <decorator:head />
@@ -49,9 +50,18 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li class="active"><a href="/loginForm.do">Sign in<span class="sr-only">(current)</span></a></li>
-            <li><a onclick="signUpBtn()" href="#">Sign up</a></li>
+            <c:choose>
+            	<c:when test="${empty userEmail}">
+            		<li><a href="../navbar/">Default</a></li>
+            		<li class="active"><a href="/loginForm.do">Sign in<span class="sr-only">(current)</span></a></li>
+            		<li><a href="/signUp.do">Sign up</a></li>
+            	</c:when>
+            	<c:otherwise>
+            		<li><a>안녕하세요 <%=userName%> 님<span class="sr-only">(current)</span></a></li>
+            		<li><a href="../navbar/">Default</a></li>
+            		<li class="active"><a href="/ajax/logout/logout.jsp">Logout<span class="sr-only">(current)</span></a></li>
+            	</c:otherwise>
+            </c:choose>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -60,14 +70,6 @@
     <div class="container">
 		<decorator:body />
     </div>    
-    
-    <script>
-
-	function signUpBtn(){
-		alert("123");
-	}
-	
-	</script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

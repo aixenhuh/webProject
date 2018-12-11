@@ -1,14 +1,14 @@
-package com.service;
+package com.service.impl;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.common.dao.SampleDAO;
+import com.service.SampleService;
 
 @Service("sampleService")
 public class SampleServiceImpl implements SampleService{
