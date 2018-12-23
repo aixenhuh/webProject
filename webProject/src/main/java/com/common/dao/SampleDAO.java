@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Repository("sampleDAO")
 public class SampleDAO extends AbstractDAO{
 
-    @SuppressWarnings("unchecked")
-    public List<Map<String, Object>> selectBoardList(String string) throws Exception{
-        return (List<Map<String, Object>>)selectList("select_Sql.selectBoardList", string);
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<Map<String, Object>> selectBoardList(HashMap hashmap) throws Exception{
+        return (List<Map<String, Object>>)selectList("select_Sql.selectBoardList", hashmap);
     }
     
     @SuppressWarnings({ "unchecked", "rawtypes" })

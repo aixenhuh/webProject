@@ -58,7 +58,7 @@
             	</c:when>
             	<c:otherwise>
             		<li><a>안녕하세요 <%=userName%> 님<span class="sr-only">(current)</span></a></li>
-            		<li><a href="../navbar/">Default</a></li>
+            		<li><a href="/notice.do">Notice Board</a></li>
             		<li class="active"><a href="/ajax/logout/logout.jsp">Logout<span class="sr-only">(current)</span></a></li>
             	</c:otherwise>
             </c:choose>

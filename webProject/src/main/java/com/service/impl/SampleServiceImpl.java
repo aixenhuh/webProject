@@ -15,9 +15,11 @@ public class SampleServiceImpl implements SampleService{
     
     @Resource(name="sampleDAO")
     private SampleDAO sampleDAO;
-     
+
 	@Override
 	public List<Map<String, Object>> selectBoardList(String string) throws Exception {
-        return sampleDAO.selectBoardList(string);
+		// TODO Auto-generated method stub
+		return null;
 	}
+     
 }

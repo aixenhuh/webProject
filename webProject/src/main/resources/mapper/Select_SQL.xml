@@ -8,7 +8,7 @@
                 IDX,
                 TITLE,
                 HIT_CNT,
-                CREA_DTM
+                TO_CHAR(CREA_DTM, 'YYYYMMDD') AS CREA_DTM
             FROM
                 TB_BOARD
             WHERE
