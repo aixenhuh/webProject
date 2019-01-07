@@ -7,6 +7,9 @@
             SELECT
                 IDX,
                 TITLE,
+                CREA_ID AS ID,
+                USER_NAME AS NAME,
+                CONTENTS,
                 HIT_CNT,
                 TO_CHAR(CREA_DTM, 'YYYYMMDD') AS CREA_DTM
             FROM
@@ -34,6 +37,12 @@
         <![CDATA[
             INSERT INTO TB_MEMBER(SEQ, ID, PASSWORD, NAME, AGE, EMAIL, SEX)
             VALUES (TB_MEMBER_SEQ.NEXTVAL, #{email}, #{password}, #{fullname}, TO_NUMBER(#{age}), #{email}, #{gender})
+        ]]>
+    </insert>
+    <insert id="writeNotice" parameterType="hashmap">
+        <![CDATA[
+            INSERT INTO TB_BOARD(IDX, TITLE, CONTENTS, CREA_DTM, CREA_ID, HIT_CNT, USER_NAME, AGE)
+            VALUES (TB_BOARD_SEQ.NEXTVAL, #{TITLE}, #{CONTENTS}, SYSDATE, #{CREA_ID}, 0, #{USER_NAME}, #{AGE})
         ]]>
     </insert>
 </mapper>

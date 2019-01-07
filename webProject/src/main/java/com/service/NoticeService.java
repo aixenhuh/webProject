@@ -7,4 +7,7 @@ import java.util.Map;
 public interface NoticeService {
 	@SuppressWarnings("rawtypes")
 	List<Map<String, Object>> noticeInfo(HashMap hashmap) throws Exception;
+	
+	@SuppressWarnings("rawtypes")
+	Object writeBoardOne(HashMap hashmap) throws Exception;
 }

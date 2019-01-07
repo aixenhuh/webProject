@@ -1,12 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <body>
+  <div id="notice_div">
     <div id="app" class="container">
     	<notice-component></notice-component>
-        <child-component :table-class123="tableClass"></child-component>
     </div>
-    <script>
+    
 
+    <a id="write_btn" class="btn btn-default">글쓰기</a>
+    
+	<div class="text-center">
+		<ul class="pagination">
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></ii>
+		</ul>
+	</div>
+</div>
+    <script>
+	$(document).ready(function(){
+		$('a#write_btn').on('click', function(){
+			$.ajax({
+                url:'/ajax/notice_write_ajax.jsp',
+                type:'POST',
+                error:function(xhr,status,e){
+                       alert('Error' + e);
+                },
+                success: function(xml){
+                    $("#notice_div").html(xml);
+                }
+         });
+		});
+	})
 
     var noticeComponent = {
     		template : '<table :class="tableClass"><thead>\
@@ -21,32 +45,24 @@
 							<tbody>\
     						<template v-for="(item, index) in items">\
     								<tr>\
-    								<td>{{ item.id }}</td>\
-    								<td>{{ item.name }}</td>\
-    								<td>{{ item.age }}</td>\
-    								<td>{{ item.title }}</td>\
-    								<td>{{ item.content }}</td>\
+    								<td>{{ item.IDX }}</td>\
+    								<td>{{ item.TITLE }}</td>\
+    								<td>{{ item.ID }}</td>\
+    								<td>{{ item.CREA_DTM }}</td>\
+    								<td>{{ item.HIT_CNT }}</td>\
     								</tr>\
     						</template>\
     						</tbody>\
-    						</table>',
+    						</table>\
+    				        <hr/>\
+    						',
     		data: function() {
     			return {
-    				items : [
-    	        		{id : 'java', name:'abc', age:'11', title:'abc',content:'this'},
-    	        		{id : 'java123', name:'abc123', age:'11123', title:'abc123',content:'this123'},
-    	        		{id : 'java123', name:'abc333', age:'33333', title:'abc333',content:'this333'}
-    	        	],
+    				items : ${noticeList},
     	        	tableClass : 'table table-striped table-hover'
     			}
     		}
     }
-    
-    Vue.component('child-component', {
-    	props: ['tableClass'],
-    	template : '<div>{{ tableClass }}</div>'
-    })
-    
         
     var vm = new Vue({
         el: '#app',

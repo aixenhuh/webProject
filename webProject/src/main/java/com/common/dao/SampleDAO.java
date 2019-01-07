@@ -22,4 +22,9 @@ public class SampleDAO extends AbstractDAO{
 	public Object signUpDao(HashMap hashmap) {
 		return insert("select_Sql.signUpDao", hashmap);
 	}
+	
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public Object writeBoardOne(HashMap hashmap) throws Exception{
+        return insert("select_Sql.writeNotice", hashmap);
+    }
 }
