@@ -33,4 +33,9 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return sampleDAO.writeBoardOne(hashmap);
 	}
+	
+	public List<Map<String, Object>> readBoardOne(HashMap hashmap) throws Exception {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectReadNotice(hashmap);
+	}
 }

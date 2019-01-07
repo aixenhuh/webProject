@@ -5,8 +5,7 @@
  <!-- 이것은 sitemesh를 사용하지 않을 패턴을 지정한다 sitemesh는 모든 URL을 대상으로 decorator를 조사하는데, 해당하는 url pattern이 나올때까지 전수 조사하게 된다. 많은 URL을 포함하고 있는 프로젝트라면 decorator를 검색하는 시간도 오래 걸리므로 decorator를 사용하지 않는 페이지도 반드시 등록을 해주어야 한다. -->
 
     <excludes>
-      <pattern>/notice/notice_write.do</pattern>
-      <pattern>/ajax/notice_write_ajax.jsp</pattern>
+      <pattern>/ajax/**</pattern>
     </excludes>
     
     

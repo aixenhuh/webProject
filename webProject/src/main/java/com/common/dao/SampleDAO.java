@@ -27,4 +27,10 @@ public class SampleDAO extends AbstractDAO{
     public Object writeBoardOne(HashMap hashmap) throws Exception{
         return insert("select_Sql.writeNotice", hashmap);
     }
+    
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Map<String, Object>> selectReadNotice(HashMap hashmap) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>)selectList("select_Sql.selectReadNotice", hashmap);
+	}
 }

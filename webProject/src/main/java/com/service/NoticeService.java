@@ -10,4 +10,7 @@ public interface NoticeService {
 	
 	@SuppressWarnings("rawtypes")
 	Object writeBoardOne(HashMap hashmap) throws Exception;
+	
+	@SuppressWarnings("rawtypes")
+	List<Map<String, Object>> readBoardOne(HashMap hashmap) throws Exception;
 }
