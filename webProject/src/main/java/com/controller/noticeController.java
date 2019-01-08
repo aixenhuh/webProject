@@ -108,7 +108,7 @@ public class noticeController {
         mav.addObject("CREA_DTM", noticeObject.get("CREA_DTM"));
         mav.addObject("IDX", noticeObject.get("IDX"));
         
-        mav.setViewName("/notice/notice_read_ajax");
+        mav.setViewName("/notice/notice_read_ajax"); 
 		return mav;
 	}
 	
