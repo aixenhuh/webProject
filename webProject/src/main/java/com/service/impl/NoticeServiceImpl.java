@@ -30,12 +30,19 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public Object writeBoardOne(HashMap hashmap) throws Exception {
-		// TODO Auto-generated method stub
 		return sampleDAO.writeBoardOne(hashmap);
 	}
 	
 	public List<Map<String, Object>> readBoardOne(HashMap hashmap) throws Exception {
-		// TODO Auto-generated method stub
 		return sampleDAO.selectReadNotice(hashmap);
+	}
+	
+	public Object noticeInfoCnt(HashMap hashmap) throws Exception {
+		return sampleDAO.selectNoticeCnt(hashmap);
+	}
+
+	@Override
+	public List<Map<String, Object>> noticeInfoAll(HashMap hashmap) throws Exception {
+		return sampleDAO.selectNoticeInfoAll(hashmap);
 	}
 }

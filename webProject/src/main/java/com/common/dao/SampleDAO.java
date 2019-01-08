@@ -18,19 +18,28 @@ public class SampleDAO extends AbstractDAO{
         return (List<Map<String, Object>>)selectList("select_Sql.loginCheckList", hashmap);
     }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public Object signUpDao(HashMap hashmap) {
 		return insert("select_Sql.signUpDao", hashmap);
 	}
 	
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "rawtypes" })
     public Object writeBoardOne(HashMap hashmap) throws Exception{
         return insert("select_Sql.writeNotice", hashmap);
     }
     
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Map<String, Object>> selectReadNotice(HashMap hashmap) {
-		// TODO Auto-generated method stub
 		return (List<Map<String, Object>>)selectList("select_Sql.selectReadNotice", hashmap);
+	}
+	
+	@SuppressWarnings({ "rawtypes" })
+	public Object selectNoticeCnt(HashMap hashmap) {
+		return selectList("select_Sql.selectNoticeCnt");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectNoticeInfoAll(HashMap<String, Object> hashmap) {
+		return selectList("select_Sql.selectNoticeInfoAll", hashmap);
 	}
 }

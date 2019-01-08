@@ -63,4 +63,40 @@
             ORDER BY IDX DESC
         ]]>
     </select>
+    <select id="selectNoticeCnt" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+            SELECT
+                count(*) as NOTICE_CNT
+            FROM
+                TB_BOARD
+            WHERE
+                DEL_GB = 'N'
+            ORDER BY IDX DESC
+        ]]>
+    </select>
+    <select id="selectNoticeInfoAll" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+        	SELECT * FROM
+        		(
+		            SELECT ROWNUM AS rn, A.*
+		            FROM 
+		            (
+			            SELECT
+			                IDX,
+			                TITLE,
+			                CREA_ID AS ID,
+			                USER_NAME AS NAME,
+			                CONTENTS,
+			                HIT_CNT,
+			                TO_CHAR(CREA_DTM, 'YYYYMMDD') AS CREA_DTM
+			            FROM
+			                TB_BOARD
+			            WHERE
+			                DEL_GB = 'N'
+			            ORDER BY IDX DESC
+			        ) A	         
+			   ) A
+		    WHERE rn BETWEEN #{startPage} AND #{endPage}
+        ]]>
+    </select>
 </mapper>

@@ -9,8 +9,13 @@ public interface NoticeService {
 	List<Map<String, Object>> noticeInfo(HashMap hashmap) throws Exception;
 	
 	@SuppressWarnings("rawtypes")
+	List<Map<String, Object>> noticeInfoAll(HashMap hashmap) throws Exception;
+	
+	@SuppressWarnings("rawtypes")
 	Object writeBoardOne(HashMap hashmap) throws Exception;
 	
 	@SuppressWarnings("rawtypes")
 	List<Map<String, Object>> readBoardOne(HashMap hashmap) throws Exception;
+
+	Object noticeInfoCnt(HashMap<String, Object> hashmap) throws Exception;
 }
