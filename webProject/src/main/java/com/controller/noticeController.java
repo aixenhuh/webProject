@@ -69,8 +69,28 @@ public class noticeController {
 	
 	@RequestMapping(value = "/notice/notice_write.do", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HashMap<String, String> hashmap = new HashMap<String, String>();
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		ModelAndView mav = new ModelAndView();
+		
+		int curPage = (request.getParameter("curPage") == null)? 0:Integer.parseInt(request.getParameter("curPage"));
+		
+		if(curPage==0) curPage = 1;
+		
+		// 전체리스트 개수
+		Object noticeCnt = noticeService.noticeInfoCnt(hashmap);
+		JSONArray noticeCount = new JSONArray(noticeCnt.toString());
+		JSONObject notiObj = (JSONObject) noticeCount.get(0);
+		int totalCnt = notiObj.getInt("NOTICE_CNT");
+		
+		// 페이지 나누기 관련 처리
+		Pagination pagenation = new Pagination(totalCnt, curPage);
+		int startPage = pagenation.getPageBegin();
+		int endPage = pagenation.getPageEnd();
+		
+		hashmap.put("startPage", startPage);
+		hashmap.put("endPage", endPage);
+		
+		List<Map<String, Object>> noticeListAll = noticeService.noticeInfoAll(hashmap);
 		
 		hashmap.put("TITLE", (String) request.getParameter("title"));
 		hashmap.put("CONTENTS", (String) request.getParameter("contents"));
@@ -80,9 +100,10 @@ public class noticeController {
         
 		noticeService.writeBoardOne(hashmap);
 		
-		List<Map<String, Object>> noticeList = noticeService.noticeInfo(hashmap);
-        JSONArray noticeArray = new JSONArray(noticeList);
+        JSONArray noticeArray = new JSONArray(noticeListAll);
+        mav.addObject("noticeCnt", noticeCnt);
         mav.addObject("noticeList", noticeArray);
+        mav.addObject("pagenation", pagenation);
         
         mav.setViewName("/notice/notice_view");
 		return mav;
