@@ -28,7 +28,9 @@
 			$("#fullname").val($("input[name=firstname]").val() + " " + $("input[name=lastname]").val());
 			if(true===invalidSignCheck()){
 				$("#signForm").submit();
+				alert("가입 완료하였습니다.");
 			}
+
 		});
 	});
 	
