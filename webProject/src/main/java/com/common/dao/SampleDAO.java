@@ -42,4 +42,9 @@ public class SampleDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectNoticeInfoAll(HashMap<String, Object> hashmap) {
 		return selectList("select_Sql.selectNoticeInfoAll", hashmap);
 	}
+
+	public Object passWordReset(HashMap<String, String> hashmap) {
+		// TODO Auto-generated method stub
+		return update("select_Sql.updatePassWord", hashmap);
+	}
 }

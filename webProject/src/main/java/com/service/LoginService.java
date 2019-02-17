@@ -9,4 +9,5 @@ public interface LoginService {
 	List<Map<String, Object>> loginCheck(HashMap hashmap) throws Exception;
 	@SuppressWarnings("rawtypes")
 	Object signUpForm(HashMap hashmap) throws Exception;
+	void passWordReset(HashMap<String, String> hashmap);
 }

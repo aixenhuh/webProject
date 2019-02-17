@@ -26,4 +26,9 @@ public class LoginServiceImpl implements LoginService {
 	public Object signUpForm(HashMap hashmap) throws Exception {
 		return sampleDAO.signUpDao(hashmap);
 	}
+
+	@Override
+	public void passWordReset(HashMap<String, String> hashmap) {
+		sampleDAO.passWordReset(hashmap);
+	}
 }

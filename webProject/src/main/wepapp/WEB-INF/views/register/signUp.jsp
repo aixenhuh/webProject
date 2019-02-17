@@ -102,7 +102,7 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                <a class="small" href="/forgotPassword.do">Forgot Password?</a>
               </div>
               <div class="text-center">
                 <a class="small" href="/loginForm.do">Already have an account? Login!</a>

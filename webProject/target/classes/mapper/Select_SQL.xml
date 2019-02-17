@@ -99,4 +99,9 @@
 		    WHERE rn BETWEEN #{startPage} AND #{endPage}
         ]]>
     </select>
+    <update id="updatePassWord" parameterType="hashmap">
+        <![CDATA[
+            UPDATE TB_MEMBER SET PASSWORD = #{newPassWord} WHERE EMAIL=#{email}
+        ]]>
+    </update>
 </mapper>
