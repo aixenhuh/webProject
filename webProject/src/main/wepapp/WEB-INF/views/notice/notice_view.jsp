@@ -3,13 +3,22 @@
   <body>
   <form id="form1" name="form1" method="post">
   	<input type="hidden" id="IDX" name="IDX" value=""></input>
-  	<div id="notice_div">
+  	<div id="notice_div" class="notice_div_class">
 	    <div id="app" class="container">
 	    	<notice-component></notice-component>
 	    </div>
-	    <a id="write_btn" class="btn btn-default">글쓰기</a>
-	    <div id="app2" class="text-center">
-	    	<page-component></page-component>
+	    <div class="notice_div_button_class">
+		    <a href="#" id="write_btn" class="btn btn-success btn-icon-split" style="align : right;">
+	          <span class="icon text-white-50">
+	            <i class="fas fa-check"></i>
+	          </span>
+	          <span class="text">Write</span>
+	        </a>
+        </div>
+        <div class="notice_div_paging_class">
+		    <div id="app2">
+		    	<page-component></page-component>
+		    </div>
 	    </div>
 	</div>
 </form>
