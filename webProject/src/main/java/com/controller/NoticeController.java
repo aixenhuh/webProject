@@ -20,7 +20,7 @@ import com.service.NoticeService;
 
 
 @Controller
-public class noticeController {
+public class NoticeController {
 
 	@Resource(name="noticeService")
 	private NoticeService noticeService;

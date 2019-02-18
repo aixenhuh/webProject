@@ -1,2 +1,5 @@
 /target/
 target
+context-datasource.xml
+.gitignore
+.project
