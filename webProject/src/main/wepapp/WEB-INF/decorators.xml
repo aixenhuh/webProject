@@ -18,6 +18,7 @@
 
     <decorator name="sitemeshSample" page="layout.jsp">
        <pattern>/*</pattern>
+       <pattern>/notice/*</pattern>
        <pattern>/introduce</pattern>  
     </decorator>  
     

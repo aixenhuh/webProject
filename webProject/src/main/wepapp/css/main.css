@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.notice_div_class {
+	padding : 24px 24px 24px 24px
+}
+
+.notice_div_button_class {
+	text-align : right;
+	padding-right : 30px; 
+}
+
+.notice_div_paging_class {
+	align : center;
+	text-align : center;
+}
