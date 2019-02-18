@@ -25,7 +25,7 @@ public class NoticeController {
 	@Resource(name="noticeService")
 	private NoticeService noticeService;
 	
-	@RequestMapping(value = "/notice/notice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
 	public ModelAndView noticeInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int curPage = (request.getParameter("curPage") == null)? 0:Integer.parseInt(request.getParameter("curPage"));
 		
@@ -67,7 +67,7 @@ public class NoticeController {
 		return mav;*/
 	}
 	
-	@RequestMapping(value = "/notice/notice_write.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/notice_write.do", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 		ModelAndView mav = new ModelAndView();
@@ -109,7 +109,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/notice/notice_read.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/notice_read.do", method = RequestMethod.POST)
 	public ModelAndView noticeRead(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HashMap<String, String> hashmap = new HashMap<String, String>();
 		ModelAndView mav = new ModelAndView();
@@ -133,7 +133,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/notice/notice_paging.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice_paging.do", method = RequestMethod.GET)
 	public ModelAndView noticePaging(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int curPage = (request.getParameter("curPage") == null)? 0:Integer.parseInt(request.getParameter("curPage"));

@@ -28,7 +28,7 @@
     
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/notice/**"/>
+            <mvc:mapping path="/notice*"/>
             	<beans:ref bean="LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

@@ -4,7 +4,7 @@
   <form id="form1" name="form1" method="post">
   	<input type="hidden" id="IDX" name="IDX" value=""></input>
   	<div id="notice_div" class="notice_div_class">
-	    <div id="app" class="container">
+	    <div id="app">
 	    	<notice-component></notice-component>
 	    </div>
 	    <div class="notice_div_button_class">
@@ -15,7 +15,7 @@
 	          <span class="text">Write</span>
 	        </a>
         </div>
-        <div class="notice_div_paging_class">
+        <div class="notice_div_paging_class" style="align : center;">
 		    <div id="app2">
 		    	<page-component></page-component>
 		    </div>
@@ -39,7 +39,7 @@
 	});
 	
 	function list(page){
-		location.href="/notice/notice.do?curPage=" + page;
+		location.href="/notice.do?curPage=" + page;
 	}
 
     var noticeComponent = {
@@ -75,7 +75,7 @@
     		methods : {
     			noticeSelect : function(noticeNum){
     				$('#IDX').val(noticeNum);
-    				$("#form1").attr('action', '/notice/notice_read.do');
+    				$("#form1").attr('action', '/notice_read.do');
     				$("#form1").submit();
 				}
     		}
@@ -88,7 +88,7 @@
 							</li>\
 							<li>\
 								<template v-for="(item, index) in afterItem">\
-									<a @click="numList(item)">{{ item }}</a>\
+									<a @click="numList(item)" href="#">{{ item }} </a>\
 								</template>\
 							</li>\
 							<li>\

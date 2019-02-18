@@ -42,14 +42,14 @@
 //글쓰기
 function fn_addtoBoard(){
     var form = $("#writeForm");
-    form.attr("action", '/notice/notice_write.do');
+    form.attr("action", '/notice_write.do');
     form.submit();
 }
  
 //목록
 function fn_cancel(){
     var form = document.getElementById("writeForm");
-    form.action = "<c:url value='/notice/notice.do'/>";
+    form.action = "<c:url value='/notice.do'/>";
     form.submit();
 }
 

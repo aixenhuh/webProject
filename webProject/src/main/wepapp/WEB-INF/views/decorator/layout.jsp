@@ -100,7 +100,7 @@
         <div id="collapseNotice" class="collapse" aria-labelledby="collapseNotice" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Notice:</h6>
-            <a class="collapse-item" href="/notice/notice.do">Notice</a>
+            <a class="collapse-item" href="/notice.do">Notice</a>
           </div>
         </div>
       </li>
