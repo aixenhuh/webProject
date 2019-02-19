@@ -35,10 +35,10 @@
 	      <!-- Default Card Example -->
 	      <div class="card mb-4">
 	        <div class="card-header">
-	          작성자
+	          	작성자
 	        </div>
 	        <div class="card-body">
-	          <%=id%>
+	            <%=id%>
 	        </div>
 	      </div>
         </div>
@@ -68,14 +68,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td style="width: 20%;"> 글 제목 </td>
-							<td colspan="2"><%=title%></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td colspan="2"><%=id%></td>
-						</tr>
 						<tr>
 							<td>작성일</td>
 							<td colspan="2"><%=crea_dtm%></td>

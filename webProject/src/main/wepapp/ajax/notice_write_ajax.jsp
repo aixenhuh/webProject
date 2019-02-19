@@ -12,19 +12,21 @@
 %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>CKEditor 5 – Classic editor</title>
+	<script src="/ckeditor5-build-classic/ckeditor.js"></script>
+	<!-- <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script> -->
 </head>
-    
 <body>
-
 <div class="container">
-    <form id="writeForm" name="writeForm" method="post">
+<form id="writeForm" name="writeForm" method="post">
     <input id="CREA_ID" name="CREA_ID" value='${userEmail}' type="hidden">
     <input id="USER_NAME" name="USER_NAME" value='${userName}' type="hidden">
     <input id="userAge" name="userAge" value='${userAge}' type="hidden">
     
     <div class="form-group">
         <label for="writer">작성자</label>
-        <input type="text" class="form-control" id="writer" name="writer" style="width:20%;">
+        <input type="text" class="form-control" id="writer" name="writer" style="width:20%;" value=<%=userEmail%>></input>
     </div>
     <div class="form-group">
         <label for="subject">제목</label>
@@ -39,6 +41,13 @@
     </form>
 </div>
 <script>
+ClassicEditor
+    .create( document.querySelector( '#contents' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+	//CKEDITOR.replace('contents');
+
 //글쓰기
 function fn_addtoBoard(){
     var form = $("#writeForm");
@@ -52,11 +61,6 @@ function fn_cancel(){
     form.action = "<c:url value='/notice.do'/>";
     form.submit();
 }
-
-$(document).ready(function(){
-	$("#writer").val('${userEmail}');
-})
 </script>
-</div>
 </body>
 </html>

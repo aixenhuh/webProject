@@ -13,15 +13,8 @@
 	String content = request.getAttribute("CONTENTS").toString();
 	String crea_dtm = request.getAttribute("CREA_DTM").toString();
 %>
-	
-	
-	
 <html>
-<head>
-</head>
-    
 <body>
-
 <div class="container">
     <form id="writeForm" name="writeForm" method="post">
     <input id="CREA_ID" name="CREA_ID" value='${userEmail}' type="hidden">
